@@ -16,7 +16,7 @@ app = FastAPI(title="VoiceTodo API")
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=["https://voice-command-todo-manager-sh2m.vercel.app/"],
+    allow_origins=["https://voice-command-todo-manager-snit.vercel.app/"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
