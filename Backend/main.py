@@ -135,7 +135,7 @@ def get_todos(user_id: str):
 # =========================
 # Complete Todo
 # =========================
-@app.put("/api/todos/{todo_id}/complete")
+@app.put("/api/todos/{todo_id}")
 def update_todo(todo_id: int, payload: StatusUpdate):
     conn = get_db()
     cursor = conn.cursor()
