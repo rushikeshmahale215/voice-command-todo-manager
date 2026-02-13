@@ -4,11 +4,8 @@ import "./VoiceInput.css";
 
 const VoiceInput = ({ onFinalResult }) => {
   const recognitionRef = useRef(null);
-
-  const finalTextRef = useRef("");
-
   const shouldListenRef = useRef(false);
-
+  const finalTextRef = useRef("");
 
   const [isSupported, setIsSupported] = useState(true);
   const [isListening, setIsListening] = useState(false);
@@ -16,10 +13,7 @@ const VoiceInput = ({ onFinalResult }) => {
   const [finalText, setFinalText] = useState("");
   const [error, setError] = useState("");
 
-
-
-  // Browser support + setup
-
+  // ✅ Initialize SpeechRecognition ONLY ONCE
   useEffect(() => {
     const SpeechRecognition =
       window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -30,18 +24,19 @@ const VoiceInput = ({ onFinalResult }) => {
     }
 
     const recognition = new SpeechRecognition();
+
     recognition.lang = "en-US";
-
     recognition.continuous = true;
-
     recognition.interimResults = true;
 
+    // 🎤 Speech result handler
     recognition.onresult = (event) => {
       let interim = "";
       let final = "";
 
       for (let i = event.resultIndex; i < event.results.length; i++) {
         const text = event.results[i][0].transcript;
+
         if (event.results[i].isFinal) {
           final += text;
         } else {
@@ -57,46 +52,64 @@ const VoiceInput = ({ onFinalResult }) => {
       }
     };
 
+    // ❌ Error handler
     recognition.onerror = (event) => {
+      console.log("Speech error:", event.error);
       setError(getErrorMessage(event.error));
-
       setIsListening(false);
     };
 
+    // 🔁 Auto restart while listening
     recognition.onend = () => {
-      setIsListening(false);
-
       if (shouldListenRef.current) {
-        recognition.start(); // auto-restart
-        setIsListening(true);
+        recognition.start();
       } else {
-        if (finalText && onFinalResult) {
-          onFinalResult(finalText.trim());
+        setIsListening(false);
+
+        const result = finalTextRef.current.trim();
+
+        if (result && onFinalResult) {
+          onFinalResult(result);
         }
+
         setInterimText("");
       }
     };
 
     recognitionRef.current = recognition;
-  }, [finalText, onFinalResult]);
 
+    // cleanup
+    return () => {
+      recognition.stop();
+    };
+  }, [onFinalResult]);
+
+  // ✅ Start Listening
   const startListening = () => {
+    if (!recognitionRef.current) return;
+
+    console.log("Starting voice recognition...");
+
     setError("");
     finalTextRef.current = "";
     setFinalText("");
     setInterimText("");
+
     shouldListenRef.current = true;
 
     recognitionRef.current.start();
     setIsListening(true);
   };
 
+  // ✅ Stop Listening
   const stopListening = () => {
+    if (!recognitionRef.current) return;
+
+    shouldListenRef.current = false;
 
     recognitionRef.current.stop();
     setIsListening(false);
 
-    
     const result = finalTextRef.current.trim();
 
     if (result && onFinalResult) {
@@ -107,20 +120,16 @@ const VoiceInput = ({ onFinalResult }) => {
     finalTextRef.current = "";
     setFinalText("");
     setInterimText("");
-
-    shouldListenRef.current = false;
-    recognitionRef.current.stop();
-    setIsListening(false);
-
   };
 
+  // ❌ Browser not supported
   if (!isSupported) {
     return (
       <p className="error-text">
-          ❌ Voice input is not supported in this browser.
-          <br />
-          Use Chrome or Edge.
-        </p>
+        ❌ Voice input not supported in this browser.
+        <br />
+        Use Chrome or Edge.
+      </p>
     );
   }
 
@@ -132,9 +141,7 @@ const VoiceInput = ({ onFinalResult }) => {
         onStop={stopListening}
       />
 
-
       {isListening && <p className="listening">🎤 Listening...</p>}
-
 
       {(finalText || interimText) && (
         <div className="transcript-box">
@@ -146,6 +153,22 @@ const VoiceInput = ({ onFinalResult }) => {
       {error && <p className="error-text">{error}</p>}
     </div>
   );
-};    
+};
+
+// ✅ Error messages helper
+function getErrorMessage(error) {
+  switch (error) {
+    case "not-allowed":
+      return "Microphone permission denied.";
+    case "no-speech":
+      return "No speech detected.";
+    case "audio-capture":
+      return "No microphone found.";
+    case "network":
+      return "Network error occurred.";
+    default:
+      return "Voice recognition error.";
+  }
+}
 
 export default VoiceInput;
