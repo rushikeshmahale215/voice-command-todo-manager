@@ -24,7 +24,7 @@ const Completed = () => {
         }
 
         const res = await fetch(
-          `http://localhost:8000/api/todos?user_id=${user.uid}`
+          `https://voice-command-todo-manager.onrender.com/api/todos?user_id=${user.uid}`
         );
 
         if (!res.ok) {

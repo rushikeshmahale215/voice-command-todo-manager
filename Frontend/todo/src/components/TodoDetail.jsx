@@ -18,7 +18,7 @@ const TodoDetail = () => {
       try {
         setLoading(true);
 
-        const res = await fetch(`http://localhost:8000/api/todos/${id}`);
+        const res = await fetch(`https://voice-command-todo-manager.onrender.com/api/todos/${id}`);
         if (!res.ok) throw new Error("Failed to fetch todo");
 
         const data = await res.json();
@@ -27,7 +27,7 @@ const TodoDetail = () => {
         // Fetch AI summary
         try {
           const descRes = await fetch(
-            `http://localhost:8000/api/todos/${id}/summary`
+            `https://voice-command-todo-manager.onrender.com/api/todos/${id}/summary`
           );
           const descData = await descRes.json();
           setDescription(descData.summary);
@@ -58,7 +58,7 @@ const TodoDetail = () => {
     setUpdating(true);
 
     const response = await fetch(
-      `http://localhost:8000/api/todos/${id}`,
+      `https://voice-command-todo-manager.onrender.com/api/todos/${id}`,
       {
         method: "PUT",
         headers: {
