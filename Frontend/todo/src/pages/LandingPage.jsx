@@ -56,7 +56,6 @@ const LandingPage = () => {
 
         <p>© {new Date().getFullYear()} VoiceTodo. All rights reserved.</p>
 
-        <p>© {new Date().getFullYear()}  VoiceTodo. All rights reserved.</p>
 
       </footer>
     </div>
