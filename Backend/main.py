@@ -13,15 +13,16 @@ app = FastAPI(title="VoiceTodo API")
 # =========================
 # CORS
 # =========================
+allowed_origins = [
+    "http://localhost:5173",
+    "https://voice-command-todo-manager.vercel.app",
+    "https://voice-command-todo-manager-snit.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=allowed_origins,   # ✅ CORRECT NAME
     allow_credentials=True,
-    origins = [
-    "http://localhost:5173",   # local frontend (development)
-    "https://voice-command-todo-manager.vercel.app",  # your Vercel frontend
-    "https://voice-command-todo-manager-snit.vercel.app",  # preview URL (optional)
-    "https://your-render-frontend.onrender.com"  # if using Render static site
-],
     allow_methods=["*"],
     allow_headers=["*"],
 )
