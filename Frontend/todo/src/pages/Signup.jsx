@@ -86,8 +86,7 @@ const Signup = () => {
         case "auth/weak-password":
           setError("Password is too weak.");
           break;
-        default:
-          setError("Something went wrong. Please try again.");
+        
       }
     } finally {
       setLoading(false);
