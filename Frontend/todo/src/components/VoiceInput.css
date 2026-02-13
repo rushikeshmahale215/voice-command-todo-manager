@@ -1,0 +1,47 @@
+.voice-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 120px;
+  padding: 16px;
+  border: 1px solid #f7f6f6;
+  border-radius: 25px;
+  background: #fff;
+}
+
+.listening {
+  color: #007bff;
+  margin-top: 10px;
+}
+
+.transcript-box {
+  margin-top: 12px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.interim {
+  color: #999;
+}
+
+.error-text {
+  color: red;
+  margin-top: 10px;
+}
+
+.voice-container {
+  position: relative;
+  border-radius: 16px;
+  padding: 28px;
+  margin-top: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.voice-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+

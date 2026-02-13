@@ -1,0 +1,68 @@
+/* ===============================
+   SETTINGS PAGE LAYOUT
+================================ */
+
+.setting-page {
+  min-height: 100vh;
+  background: whitesmoke;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ===============================
+   CARD
+================================ */
+
+.setting-card {
+  background: linear-gradient(135deg, #f3f6fb, #e8eef9);
+  width: 100%;
+  max-width: 650px;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.setting-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* ===============================
+   TYPOGRAPHY
+================================ */
+
+.setting-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.setting-subtitle {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.setting-section h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #374151;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 600px) {
+  .setting-card {
+    padding: 25px;
+  }
+
+  .setting-title {
+    font-size: 22px;
+  }
+}

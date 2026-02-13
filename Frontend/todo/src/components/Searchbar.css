@@ -1,0 +1,87 @@
+/* ===============================
+   SEARCH BAR CONTAINER
+================================ */
+
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+/* ===============================
+   INPUT FIELD
+================================ */
+
+.search-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* ===============================
+   BUTTON BASE
+================================ */
+
+.search-btn {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* ===============================
+   SEARCH BUTTON
+================================ */
+
+.search-btn.primary {
+  background-color: #2563eb;
+  color: white;
+}
+
+.search-btn.primary:hover {
+  background-color: #1e40af;
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   CLEAR BUTTON
+================================ */
+
+.search-btn.secondary {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.search-btn.secondary:hover {
+  background-color: #e5e7eb;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 600px) {
+  .search-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-btn {
+    width: 100%;
+  }
+}

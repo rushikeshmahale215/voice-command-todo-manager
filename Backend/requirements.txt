@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+langchain
+langchain-google-genai
+google-generativeai
+python-dotenv
+firebase-admin
