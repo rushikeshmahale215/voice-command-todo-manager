@@ -125,7 +125,7 @@ const Dashboard = () => {
           <p>© {new Date().getFullYear()} VoiceTodo. All rights reserved.</p>
         </footer>
 
-        <VoiceCommandButton />
+        
 
       </div>
     </div>
