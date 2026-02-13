@@ -17,6 +17,7 @@ allowed_origins = [
     "http://localhost:5173",
     "https://voice-command-todo-manager.vercel.app",
     "https://voice-command-todo-manager-snit.vercel.app",
+    "https://voice-command-todo-manager-1.onrender.com"
 ]
 
 app.add_middleware(
@@ -134,7 +135,7 @@ def get_todos(user_id: str):
 # =========================
 # Complete Todo
 # =========================
-@app.put("/api/todos/{todo_id}")
+@app.put("/api/todos/{todo_id}/complete")
 def update_todo(todo_id: int, payload: StatusUpdate):
     conn = get_db()
     cursor = conn.cursor()
